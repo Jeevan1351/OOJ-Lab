@@ -1,0 +1,38 @@
+import java.util.*;
+
+class trans
+{
+	public static void main(String[] args)
+	{
+		Scanner sn = new Scanner(System.in);
+		System.out.println("Enter the value of m and n");
+		int m = sn.nextInt();
+		int n = sn.nextInt();
+		int mat[][] = new int[m][n];
+		for(int i=0;i<m;i++)
+		{
+			System.out.println("Enter the elements of row "+(i+1));
+			for(int j = 0;j<n;j++)
+				mat[i][j] = sn.nextInt();
+		}
+
+		System.out.println("The given matrix is :");
+		for(int i = 0; i<m; i++)
+		{
+			for(int j=0; j<n; j++)
+				System.out.print(mat[i][j]+" ");
+			System.out.println();
+		}
+		int tra[][] = new int[n][m];
+		for(int i =0;i<n;i++)
+			for(int j=0; j<m; j++)
+				tra[i][j]=mat[j][i];
+		System.out.println("The transpose of the given matrix is:");
+		for(int i = 0; i<n; i++)
+		{
+			for(int j=0; j<m; j++)
+				System.out.print(tra[i][j]+" ");
+			System.out.println();
+		}
+	}
+}
