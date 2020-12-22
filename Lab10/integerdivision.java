@@ -1,7 +1,23 @@
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-class integerdivision extends Frame implements ActionListener{
+class dia extends Dialog implements ActionListener {
+	integerdivision id;
+  dia(Frame parent, String title) {
+ super(parent, title, false); 
+  id=(integerdivision)parent;
+ setLayout(new FlowLayout());
+ setSize(300, 200);
+ add(new Label(id.msg));
+ Button b;
+ add(b = new Button("OK"));
+ b.addActionListener(this);
+ }
+  public void actionPerformed(ActionEvent ae) {
+ dispose();
+ }
+}
+public class integerdivision extends Frame implements ActionListener{
+    String msg="";
     TextField n1,n2,res;
     Label ln1,ln2,lres;
     Button b;
@@ -34,17 +50,29 @@ public void actionPerformed(ActionEvent ae)
         int num3=num1/num2;
         res.setText(String.valueOf(num3));
     }catch(NumberFormatException ne ){
-        JOptionPane.showMessageDialog(this,ne,"ERROR", JOptionPane.ERROR_MESSAGE);
+        /*JOptionPane.showMessageDialog(this,ne,"ERROR", JOptionPane.ERROR_MESSAGE);*/
+       msg="NUMBERFORMAT EXCEPTION";
+       dia d=new dia(this,"EXCEPTION");
+       d.setVisible(true);
+       /*repaint();*/
     }
     catch(ArithmeticException a){
-        JOptionPane.showMessageDialog(this,a,"ERROR", JOptionPane.ERROR_MESSAGE);
+       /* JOptionPane.showMessageDialog(this,a,"ERROR", JOptionPane.ERROR_MESSAGE);*/
+        msg="ARITHMETIC EXCEPTION";
+        dia d=new dia(this,"EXCEPTION");
+        d.setVisible(true);
+        /*repaint();*/
     }
 }
 }
+/*public void paint(Graphics g)
+{
+    g.drawString(msg,200,200);
+}*/
 public static void main(String args[])
 {
     integerdivision i=new integerdivision();
-    i.setSize(new Dimension(400,400));
+    i.setSize(new Dimension(300,300));
     i.setTitle("INTEGER DIVISION OF TWO NUMBERS");
     i.setVisible(true);
 }
